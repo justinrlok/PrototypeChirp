@@ -6,9 +6,14 @@ var passport = require('passport'); //
 var session = require('express-session'); //
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-
+require('./models/models.js');
+var index = require('./routes/index');
 var api = require('./routes/api');
 var authenticate = require('./routes/authenticate')(passport);
+var mongoose = require('mongoose');
+// Connect to MongoDB
+mongoose.connect("mongodb://localhost:27017/chirp-test");
+
 
 var app = express();
 
@@ -28,6 +33,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(passport.initialize()); // middle ware
 app.use(passport.session()); // middle ware
 
+app.use('/', index);
 app.use('/api', api);
 app.use('/auth', authenticate);
 

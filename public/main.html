@@ -1,19 +1,9 @@
 <!--main.html-->
-<html>
-<head>
-    <title>Chirp</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0/angular.min.js"></script>
-    <script src="javascripts/chirpApp.js"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="stylesheets/style.css">
-</head>
-<body ng-app="chirpApp">
-<div id='main' class="container" ng-controller="mainController">
-    <div class="col-md-offset-2 col-md-8">
         <div class="clearfix">
             <h1>Book Bodega</h1>
-            <form ng-Submit="post()">
-                <input required type="text" class="form-control" placeholder="Your name" ng-model="newPost.created_by" />
+            <form ng-Submit="post()" ng-show = 'authenticated'>
+                <!-- <input required type="text" class="form-control" placeholder="Your name" ng-model="newPost.created_by" /> -->
+                <h4>{{current_user}} says</h4>
                 <textarea required class="form-control" maxlength="200" rows="3" placeholder="Say something" ng-model="newPost.text"></textarea>
                 <input class="btn submit-btn pull-right" type="submit" value="Submit" />
             </form>
@@ -27,7 +17,3 @@
                 </div>
             </div>
         </div>
-    </div>
-</div>
-</body>
-</html>
